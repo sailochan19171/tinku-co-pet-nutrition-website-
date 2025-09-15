@@ -1,10 +1,10 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, Request, Response } from 'express';
 import PetProfile from '../models/PetProfile.js';
 
 const router = Router();
 
 // Create
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request: Request, res: Response: Response) => {
   try {
     const pet = await PetProfile.create(req.body);
     res.status(201).json(pet);
@@ -20,14 +20,14 @@ router.get('/', async (_req: Request, res: Response) => {
 });
 
 // Get by id
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request: Request, res: Response: Response) => {
   const pet = await PetProfile.findById(req.params.id);
   if (!pet) return res.status(404).json({ error: 'Not found' });
   res.json(pet);
 });
 
 // Update
-router.put('/:id', async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request: Request, res: Response: Response) => {
   try {
     const pet = await PetProfile.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!pet) return res.status(404).json({ error: 'Not found' });

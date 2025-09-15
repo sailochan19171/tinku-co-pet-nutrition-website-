@@ -4,7 +4,7 @@ import MealPlan from '../models/MealPlan.js';
 const router = Router();
 
 // Brand-agnostic shopping list from plan items
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req, res) => {
   const { planId } = req.body as { planId: string };
   const plan = await MealPlan.findById(planId);
   if (!plan) return res.status(404).json({ error: 'Plan not found' });

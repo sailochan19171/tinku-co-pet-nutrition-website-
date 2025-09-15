@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, Request, Response } from 'express';
 import MealPlan from '../models/MealPlan.js';
 import PetProfile from '../models/PetProfile.js';
 import { generateNarrative } from '../utils/openai.js';
@@ -45,7 +45,7 @@ function computeDailyPortion(
   return gramsDay;
 }
 
-router.post('/generate', async (req: Request, res: Response) => {
+router.post('/generate', async (req: Request: Request, res: Response: Response) => {
   try {
     const { petId, startDateISO } = req.body as { petId: string; startDateISO?: string };
     const pet = await PetProfile.findById(petId);

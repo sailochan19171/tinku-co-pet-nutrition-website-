@@ -1,10 +1,10 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, Request, Response } from 'express';
 import User from '../models/User.js';
 
 const router = Router();
 
 // Create or get user on signup
-router.post('/signup', async (req: Request, res: Response) => {
+router.post('/signup', async (req: Request: Request, res: Response: Response) => {
   try {
     const { email, name, password } = req.body;
     if (!email || !password) return res.status(400).json({ error: 'email and password required' });
@@ -21,7 +21,7 @@ router.post('/signup', async (req: Request, res: Response) => {
 });
 
 // Simple login check (demo only)
-router.post('/login', async (req: Request, res: Response) => {
+router.post('/login', async (req: Request: Request, res: Response: Response) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email, password });
