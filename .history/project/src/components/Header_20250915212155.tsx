@@ -134,22 +134,6 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      <div
-        id="mobile-menu"
-        className={`${mobileOpen ? 'block' : 'hidden'} md:hidden bg-white border-t border-gray-200`}
-      >
-        <nav className="px-4 py-3 flex flex-col gap-3">
-          <a href="#dogs" className="text-gray-700 hover:text-blue-600">Dogs</a>
-          <a href="#cats" className="text-gray-700 hover:text-blue-600">Cats</a>
-          <a href="#nutrition" className="text-gray-700 hover:text-blue-600">Nutrition</a>
-          <a href="#health" className="text-gray-700 hover:text-blue-600">Health</a>
-          <a href="#solutions" className="text-gray-700 hover:text-blue-600">Science</a>
-          <a href="#about" className="text-gray-700 hover:text-blue-600">About</a>
-        </nav>
-      </div>
-
       <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} onAuthSuccess={handleAuthSuccess} />
     </header>
   );

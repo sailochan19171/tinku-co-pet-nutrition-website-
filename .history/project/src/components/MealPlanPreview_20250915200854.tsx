@@ -44,6 +44,10 @@ function totalGrams(items: PlanItem[] = []) {
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 const api = (p: string) => `${API_BASE}${p.startsWith('/') ? p : `/${p}`}`;
 
+// API helper using VITE_API_BASE_URL
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+const api = (p: string) => `${API_BASE}${p.startsWith('/') ? p : `/${p}`}`;
+
 export default function MealPlanPreview() {
   const [loading, setLoading] = useState(true);
   const [pets, setPets] = useState<Pet[]>([]);
@@ -64,7 +68,7 @@ export default function MealPlanPreview() {
       try {
         setLoading(true);
         setError(null);
-        const petsRes = await fetch(api('/api/pets'));
+        const petsRes = await fetch(api(api('/api/pets')));
         if (!petsRes.ok) throw new Error('Failed to load pets');
         const petsJson: Pet[] = await petsRes.json();
         if (cancelled) return;
@@ -72,7 +76,7 @@ export default function MealPlanPreview() {
 
         if (petsJson.length > 0) {
           const petId = petsJson[0]._id;
-          const planRes = await fetch(api(`/api/plans/${petId}${weekParam}`));
+          const planRes = await fetch(api(api(`/api/plans/${petId}${weekParam}`)));
           if (planRes.ok) {
             const planJson: Plan = await planRes.json();
             if (!cancelled) {
@@ -98,12 +102,12 @@ export default function MealPlanPreview() {
     return () => { cancelled = true; };
   }, [weekParam]);
 
-  async function handleGenerate() {
+  async function handleGenerate)() {
     if (!firstPet) return;
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(api('/api/plans/generate'), {
+      const res = await fetch(api(api('/api/plans/generate'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ petId: firstPet._id, startDateISO: startOfWeekISO() })

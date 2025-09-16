@@ -138,7 +138,7 @@ const Header: React.FC = () => {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`${mobileOpen ? 'block' : 'hidden'} md:hidden bg-white border-t border-gray-200`}
+        className={`md:hidden bg-white border-t border-gray-200 overflow-hidden transition-[max-height] duration-300 ${mobileOpen ? 'max-h-96' : 'max-h-0'}`}
       >
         <nav className="px-4 py-3 flex flex-col gap-3">
           <a href="#dogs" className="text-gray-700 hover:text-blue-600">Dogs</a>
