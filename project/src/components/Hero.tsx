@@ -11,6 +11,7 @@ type HeroProps = {
 
 const Hero: React.FC<HeroProps> = ({ onStartQuiz }) => {
   const [offsetY, setOffsetY] = React.useState(0);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
     let rAF = 0;
@@ -24,6 +25,32 @@ const Hero: React.FC<HeroProps> = ({ onStartQuiz }) => {
     };
   }, []);
 
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // Autoplay failed, user can interact later
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const parallaxStyle: React.CSSProperties = {
     transform: `translateY(${offsetY * 0.15}px)`,
     willChange: 'transform',
@@ -31,6 +58,17 @@ const Hero: React.FC<HeroProps> = ({ onStartQuiz }) => {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-brand-tint2 via-white to-brand-tint2 px-6 sm:px-8 lg:px-12 pt-20 sm:pt-24 pb-20 sm:pb-28" data-aos="fade-up">
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+        loop
+        muted
+        playsInline
+      >
+        <source src="/AdobeStock_96300077_Video_HD_Preview.mov" type="video/quicktime" />
+        Your browser does not support the video tag.
+      </video>
       <div className="relative z-10 max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="100">
         {/* Text + Image side-by-side */}
         <div className="flex flex-col lg:flex-row items-start gap-8" data-aos="fade-up" data-aos-delay="200">
