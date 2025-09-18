@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base typography and smoothing for a premium feel */
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply antialiased text-gray-900 bg-white;
+  }
+}
+
+/* Reusable layout helpers aligned to brand palette */
+@layer components {
+  .container-premium { @apply max-w-7xl mx-auto px-6 lg:px-8; }
+  .section-premium { @apply py-20 sm:py-24; }
+  .heading-hero { @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-primary; }
+  .heading-section { @apply text-4xl lg:text-5xl font-bold text-brand-primary; }
+  .btn-primary { @apply inline-flex items-center justify-center bg-brand-primary hover:bg-brand-primaryDark text-white font-semibold py-3.5 px-7 rounded-lg transition-colors; }
+  .card-soft { @apply bg-white rounded-xl shadow-sm ring-1 ring-[color:var(--ring-color,theme(colors.brand.tint2))]; }
+}
+
+/* Typography baseline for section content */
+@layer components {
+  /* Elevate default content sizes responsively */
+  .content-base { @apply text-[16px] sm:text-[17px] lg:text-[18px] leading-relaxed; }
+  .content-base p,
+  .content-base li,
+  .content-base dd,
+  .content-base td,
+  .content-base span { @apply text-[16px] sm:text-[17px] lg:text-[18px] leading-relaxed; }
+
+  /* Normalize small utilities inside content for better readability */
+  .content-base .text-xs { @apply text-[14px]; }
+  .content-base .text-sm { @apply text-[15px] sm:text-[16px]; }
+  .content-base .text-base { @apply text-[16px] sm:text-[17px] lg:text-[18px]; }
+}
+
+/* Global subtle paw background for all sections */
+/* Uses a repeating low-opacity SVG inspired by brand shapes; fixed so it stays visible during scroll */
+.paw-bg {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cg fill='none' stroke='%232f7ebe' stroke-width='14' stroke-opacity='0.10'%3E%3Ccircle cx='140' cy='140' r='58'/%3E%3Ccircle cx='240' cy='110' r='52'/%3E%3Ccircle cx='320' cy='120' r='48'/%3E%3Ccircle cx='400' cy='160' r='44'/%3E%3Cellipse cx='260' cy='320' rx='170' ry='120'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 720px 720px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
